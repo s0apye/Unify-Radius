@@ -1,7 +1,4 @@
-Import-Csv C:\AP.csv | Foreach-Object
- {
-     $DeviceName = $_."Name"
-     $IPAddress = $_."IP"
-     $SecretPass = $_."SecretKey"
-     New-NpsRadiusClient -Address $IPAddress -Name $DeviceName -SharedSecret $SecretPass
- }
+Import-csv "C:\AP.csv" | ForEach-Object 
+{
+ New-NpsRadiusClient -Address $_.IP -Name $_.Name -SharedSecret $_.SecretPass -AuthAttributeRequired $true 
+}
