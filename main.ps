@@ -1,0 +1,7 @@
+Import-Csv D:\ND.csv | Foreach-Object
+ {
+     $DeviceName = $_."Name"
+     $IPAddress = $_."IP"
+     $SecretePass = $_."SecreteKey"
+     New-NpsRadiusClient -Address $IPAddress -Name $DeviceName -SharedSecret $SecretePass -VendorName Cisco -AuthAttributeRequired $True
+ }
